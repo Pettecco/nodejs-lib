@@ -1,49 +1,28 @@
-const fs = require('fs');
-
-const caminhoArquivo = process.argv;
-const link = caminhoArquivo[2];
-
-fs.readFile(link, 'utf-8', (erro, texto) => {
-  quebraEmParagrafos(texto);
-  // verificaPalavrasDuplicadas(texto);
-});
-
-// criar um array com as palavras
-// contar as ocorrências
-// montar um objeto com o resultado
-
-// {
-//   "web": 5,
-//   "computador": 4
-// }
-
-// /[.,\/#!$%\^&\*;:{}=\-_`~()]/g
-
-function quebraEmParagrafos(texto) {
-  const paragrafos = texto.toLowerCase().split('\n');
-  const contagem = paragrafos.flatMap((paragrafo) => {
-    if (!paragrafo) return [];
-    return verificaPalavrasDuplicadas(paragrafo);
+export function countWords(text) {
+  const paragraphs = extractParagraphs(text);
+  const count = paragraphs.flatMap((paragraph) => {
+    if (!paragraph) return [];
+    return checkDuplicatedWords(paragraph);
   });
-  console.log(contagem);
+  return count;
 }
 
-// [1, 2, [3, 4]]
-// [1, 2, 3, 4]
-
-function limpaPalavras(palavra) {
-  return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+function extractParagraphs(text) {
+  return text.toLowerCase().split('\n');
 }
 
-function verificaPalavrasDuplicadas(texto) {
-  const listaPalavras = texto.split(' ');
-  const resultado = {};
-  // objeto[propriedade] = valor;
-  listaPalavras.forEach((palavra) => {
-    if (palavra.length >= 3) {
-      const palavraLimpa = limpaPalavras(palavra);
-      resultado[palavraLimpa] = (resultado[palavraLimpa] || 0) + 1;
+function cleanWords(word) {
+  return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+}
+
+function checkDuplicatedWords(text) {
+  const wordList = text.split(' ');
+  const result = {};
+  wordList.forEach((word) => {
+    if (word.length >= 3) {
+      const cleanWord = cleanWords(word);
+      result[cleanWord] = (result[cleanWord] || 0) + 1;
     }
   });
-  return resultado;
+  return result;
 }
