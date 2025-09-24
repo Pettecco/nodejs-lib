@@ -1,17 +1,36 @@
 {
   "name": "nodejs-lib",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Uma biblioteca Node.js para análise de textos que identifica palavras duplicadas em parágrafos",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "analyze:example": "node src/cli.js -t files/texto-aprendizado.txt -d output"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "text-analysis",
+    "duplicate-detection",
+    "cli",
+    "nodejs",
+    "text-processing"
+  ],
+  "author": "Pettecco",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {},
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  },
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "jest": "^30.1.3"
   }
 }

@@ -1,5 +1,9 @@
 # Node.js Text Analyzer
 
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen)](https://nodejs.org)
+[![Jest](https://img.shields.io/badge/tested%20with-jest-brightgreen)](https://jestjs.io)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](./coverage)
+
 Uma biblioteca Node.js para análise de textos que identifica palavras duplicadas em parágrafos. Ferramenta útil para revisão de textos, detecção de redundâncias e análise de conteúdo.
 
 **Projeto desenvolvido como parte dos estudos no curso de Node.js da Alura.**
@@ -65,13 +69,18 @@ nodejs-lib/
 │   ├── index.js            # Funções principais de análise
 │   ├── helpers.js          # Funções auxiliares
 │   └── errors/
-│       └── handleErrors.js  # Tratamento de erros
+│       └── handleErrors.js # Tratamento de erros
+├── tests/                  # Testes unitários
+│   ├── index.test.js       # Testes das funções principais
+│   ├── helpers.test.js     # Testes das funções auxiliares
+│   └── handleErrors.test.js# Testes de tratamento de erros
 ├── files/                  # Arquivos de exemplo
 │   ├── texto-aprendizado.txt
 │   ├── texto-kanban.txt
 │   └── texto-web.txt
 ├── output/                 # Pasta de saída dos resultados
 │   └── resultado.txt
+├── coverage/               # Relatórios de cobertura (não versionado)
 ├── package.json
 └── README.md
 ```
@@ -107,3 +116,23 @@ Este projeto foi desenvolvido durante o curso **"Node.js: criando sua primeira b
 - Tratamento de erros e promises
 - Boas práticas de desenvolvimento em Node.js
 - Uso de bibliotecas externas (Commander.js, Chalk)
+
+## Testes
+
+O projeto possui uma suíte completa de testes implementada com **Jest**:
+
+### Executar testes
+
+```bash
+# Executar todos os testes
+npm test
+
+# Executar testes com cobertura completa
+npm run test:coverage
+
+# Executar testes em modo watch (desenvolvimento)
+npm run test:watch
+
+# Visualizar relatório de cobertura
+open coverage/lcov-report/index.html
+```
