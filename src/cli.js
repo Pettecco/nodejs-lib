@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import handleErrors from './errors/funcoesErro.js';
+import handleErrors from './errors/handleErrors.js';
 import { countWords } from './index.js';
 import { buildFileOutput } from './helpers.js';
 import { Command } from 'commander';
@@ -24,12 +24,7 @@ program
     const textPath = path.resolve(text);
     const destinationPath = path.resolve(destination);
 
-    try {
-      processFile(textPath, destinationPath);
-      console.log(chalk.green('texto processado com sucesso'));
-    } catch (error) {
-      console.log('ocorreu um erro no processamento', error);
-    }
+    processFile(textPath, destinationPath);
   });
 
 program.parse();
@@ -40,6 +35,7 @@ function processFile(text, destination) {
       if (error) throw error;
       const result = countWords(text);
       createAndSaveFile(result, destination);
+      console.log(chalk.green('texto processado com sucesso'));
     } catch (error) {
       handleErrors(error);
     }
